@@ -7,6 +7,6 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <h2 *ngIf="nameToDisplay!=null">Welcome {{nameToDisplay}}</h2>
-  <input [(ngModel)]="newName"><ion-button (click) = "setName()">OK</ion-button>
+  <input [(ngModel)]="searchedCountry">
+  <ion-button (click) = "setCountry()"expand="block">SEARCH</ion-button>
 </ion-content>

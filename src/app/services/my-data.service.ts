@@ -4,7 +4,7 @@ import { Storage } from '@ionic/storage-angular';
 @Injectable({
   providedIn: 'root'
 })
-export class MyDataServiceTsService {
+export class MyDataService {
 
   constructor(private storage: Storage) {
     this.init();

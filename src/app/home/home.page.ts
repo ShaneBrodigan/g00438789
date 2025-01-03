@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { MyDataServiceTsService } from '../services/my-data.service.ts.service';
+import { MyDataService } from '../services/my-data.service';
 import { IonHeader, IonToolbar, IonTitle, IonContent, IonButton} from '@ionic/angular/standalone';
 
 @Component({
@@ -11,11 +11,10 @@ import { IonHeader, IonToolbar, IonTitle, IonContent, IonButton} from '@ionic/an
   imports: [IonHeader, IonToolbar, IonTitle, IonContent, IonButton, FormsModule, CommonModule],
 })
 export class HomePage {
-  mds: MyDataServiceTsService;
-  newName: String = "";
-  nameToDisplay: String = "";
+  mds: MyDataService;
+  searchedCountry: String = "";
 
-  constructor(mds: MyDataServiceTsService) {
+  constructor(mds: MyDataService) {
     this.mds = mds;
   }
 
@@ -24,16 +23,16 @@ export class HomePage {
   }
 
   ionViewWillEnter() {
-    this.getNameFromStorage();
+  //  this.getCountryFromStorage();
   }
 
-  async setName() {
-    await this.mds.set("name", this.newName);
-    this.nameToDisplay = this.newName;
+  async setCountry() {
+    await this.mds.set("name", this.searchedCountry);
   }
 
-  async getNameFromStorage() {
-    this.nameToDisplay = await this.mds.get("name");
-    console.log(this.nameToDisplay);
+  /*
+  async getCountryFromStorage() {
+    await this.mds.get("name");
   }
+  */
 }
