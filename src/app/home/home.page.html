@@ -7,6 +7,6 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-input label="Enter Country" placeholder="Country name" [(ngModel)] = "searchedCountry"></ion-input>
-  <ion-button (click)="openCountriesPage()" expand="block">Search</ion-button>
+  <h2 *ngIf="nameToDisplay!=null">Welcome {{nameToDisplay}}</h2>
+  <input [(ngModel)]="newName"><ion-button (click) = "setName()">OK</ion-button>
 </ion-content>
