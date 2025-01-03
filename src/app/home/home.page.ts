@@ -2,13 +2,13 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { MyDataService } from '../services/my-data.service';
-import { IonHeader, IonToolbar, IonTitle, IonContent, IonButton} from '@ionic/angular/standalone';
+import { IonHeader, IonToolbar, IonTitle, IonContent, IonButton, IonInput} from '@ionic/angular/standalone';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
-  imports: [IonHeader, IonToolbar, IonTitle, IonContent, IonButton, FormsModule, CommonModule],
+  imports: [IonHeader, IonToolbar, IonTitle, IonContent, IonButton, IonInput, FormsModule, CommonModule],
 })
 export class HomePage {
   mds: MyDataService;
@@ -27,7 +27,7 @@ export class HomePage {
   }
 
   async setCountry() {
-    await this.mds.set("name", this.searchedCountry);
+    await this.mds.set("countryName", this.searchedCountry);
   }
 
   /*
