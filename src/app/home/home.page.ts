@@ -30,7 +30,7 @@ export class HomePage {
   }
 
   async setCountry() {
-    await this.mds.set("countryName", this.searchedCountry);
+    await this.mds.set("SearchedCountryName", this.searchedCountry);
     this.router.navigate(["/countries"]);
   }
 

@@ -32,7 +32,7 @@ export class CountriesPage implements OnInit {
   }
 
   async getSearchedCountry() {
-    this.searchedCountry = await this.mds.get('countryName');
+    this.searchedCountry = await this.mds.get('SearchedCountryName');
     this.options.url = this.options.url.concat(this.searchedCountry);
     let result = await this.mhs.get(this.options);
     this.countryInfo = result.data;
@@ -41,12 +41,18 @@ export class CountriesPage implements OnInit {
 
   routeToNews(country: any) {
     let cca2OfCounty = country.cca2;
-    this.setcca2(cca2OfCounty);
+    let nameOfCountry = country.name.common;
+    this.setCca2(cca2OfCounty);
+    this.setCountryName(nameOfCountry);
     this.router.navigate(["/news"]);
   }
 
-  async setcca2(cca2: any) {
-    await this.mds.set("cca2", cca2);
+  async setCca2(cca2: string) {
+    await this.mds.set("cca2OfCountry", cca2);
+  }
+
+  async setCountryName(nameOfCountry: string) {
+    await this.mds.set("nameOfCountry", nameOfCountry);
   }
 
 }
