@@ -1,11 +1,11 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>news from {{countryName}}</ion-title>
+    <ion-title>News from {{countryName}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-title>News for {{countryName}}</ion-title>
+  <ion-title>{{pageHeading}}</ion-title>
   <ion-card *ngFor="let article of newsRecievedFromApi" >
     <img src={{article.image_url}} />
     <ion-card-header>

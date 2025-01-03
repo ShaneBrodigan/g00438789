@@ -18,6 +18,7 @@ export class NewsPage implements OnInit {
 
   countrycca2: string = "";
   countryName: string = "";
+  pageHeading: string = "";
   apiKey = "pub_64298dc8e5a64e22345a37529de6097a947d0";
   newsRecievedFromApi: any;
   options: HttpOptions = {
@@ -42,8 +43,18 @@ export class NewsPage implements OnInit {
 
   async getCountryNews() {
     this.options.url = this.options.url.concat(this.countrycca2);
-    let result = await this.mhs.get(this.options); 
-    this.newsRecievedFromApi = result.data.results;
-    console.log(this.newsRecievedFromApi);
+    let result = await this.mhs.get(this.options);
+    result = result.data;
+    //console.log(this.newsRecievedFromApi);
+    this.checkIfNews(result);
+  }
+
+  checkIfNews(result: any) {
+    if(result.status == "success"){
+      this.pageHeading = "News for " + this.countryName;
+      this.newsRecievedFromApi = result.results;
+    } else {
+      this.pageHeading = "No news found for " + this.countryName;
+    }
   }
 }
