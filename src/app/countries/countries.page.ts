@@ -5,6 +5,7 @@ import { IonContent, IonHeader, IonTitle, IonToolbar, IonCardSubtitle, IonCard, 
 import { MyDataService } from '../services/my-data.service';
 import { MyHttpService } from '../services/my-http.service';
 import { HttpOptions } from '@capacitor/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-countries',
@@ -15,13 +16,16 @@ import { HttpOptions } from '@capacitor/core';
 })
 export class CountriesPage implements OnInit {
 
+  private router!: Router;
   searchedCountry: string= "";
-  countryInfo!: any;
+  countryInfo!: any[];
   options: HttpOptions = {
     url: "https://restcountries.com/v3.1/name/"
   }
 
-  constructor(private mds: MyDataService, private mhs: MyHttpService) { }
+  constructor(private mds: MyDataService, private mhs: MyHttpService, router: Router) {
+    this.router = router;
+   }
 
   ngOnInit() {
     this.getSearchedCountry();
@@ -33,6 +37,16 @@ export class CountriesPage implements OnInit {
     let result = await this.mhs.get(this.options);
     this.countryInfo = result.data;
     console.log(this.countryInfo);
+  }
+
+  routeToNews(country: any) {
+    let cca2OfCounty = country.cca2;
+    this.setcca2(cca2OfCounty);
+    this.router.navigate(["/news"]);
+  }
+
+  async setcca2(cca2: any) {
+    await this.mds.set("cca2", cca2);
   }
 
 }

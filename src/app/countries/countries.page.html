@@ -11,7 +11,7 @@
       <ion-card-title>{{country.name.official}}</ion-card-title>
     </ion-card-header>
 
-    <ion-button expand="block" fill="outline">NEWS</ion-button>
+    <ion-button (click)="routeToNews(country)" expand="block" fill="outline">NEWS</ion-button>
     <ion-button expand="block" fill="outline">WEATHER</ion-button>
   </ion-card>
 </ion-content>
