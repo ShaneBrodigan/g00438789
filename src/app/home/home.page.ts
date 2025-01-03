@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { MyDataService } from '../services/my-data.service';
 import { IonHeader, IonToolbar, IonTitle, IonContent, IonButton, IonInput} from '@ionic/angular/standalone';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -12,10 +13,12 @@ import { IonHeader, IonToolbar, IonTitle, IonContent, IonButton, IonInput} from 
 })
 export class HomePage {
   mds: MyDataService;
+  router: Router;
   searchedCountry: String = "";
 
-  constructor(mds: MyDataService) {
+  constructor(mds: MyDataService, router: Router) {
     this.mds = mds;
+    this.router = router;
   }
 
   ngOnInit() {
@@ -28,6 +31,7 @@ export class HomePage {
 
   async setCountry() {
     await this.mds.set("countryName", this.searchedCountry);
+    this.router.navigate(["/countries"]);
   }
 
   /*
