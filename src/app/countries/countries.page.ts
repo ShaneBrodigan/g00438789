@@ -47,12 +47,27 @@ export class CountriesPage implements OnInit {
     this.router.navigate(["/news"]);
   }
 
+  routeToWeather(country: any){
+    let latitude = country.latlng[0];
+    let longitude = country.latlng[1];
+    this.setLatitude(latitude);
+    this.setLongitude(longitude);
+  }
+
   async setCca2(cca2: string) {
     await this.mds.set("cca2OfCountry", cca2);
   }
 
   async setCountryName(nameOfCountry: string) {
     await this.mds.set("nameOfCountry", nameOfCountry);
+  }
+
+  async setLatitude(latitude: string) {
+    await this.mds.set("latitude", latitude);
+  }
+
+  async setLongitude(longitude: string) {
+    await this.mds.set("longitude", longitude);
   }
 
 }
