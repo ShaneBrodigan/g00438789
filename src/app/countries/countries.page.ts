@@ -52,6 +52,7 @@ export class CountriesPage implements OnInit {
     let longitude = country.latlng[1];
     this.setLatitude(latitude);
     this.setLongitude(longitude);
+    this.router.navigate(["/weather"]);
   }
 
   async setCca2(cca2: string) {
